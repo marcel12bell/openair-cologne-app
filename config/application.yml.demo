@@ -1,0 +1,5 @@
+GMAIL_USERNAME: 'aaa@gmail.com'
+GMAIL_PASSWORD: 'bbb'
+SECRET_KEY_BASE: 'a long generated secret'
+DEV_DB_USER: root
+DEV_DB_PASS: fill_password

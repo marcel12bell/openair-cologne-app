@@ -31,14 +31,10 @@ This Rails 5 (5.0.0.1) app integrated:
 
 ## Setup
 
-1. Do git checkout followed by git archive by
-
-```sh
-$ git archive master | tar -x -C /somewhere/else
-```
+1. Do: git clone https://github.com/marcel12bell/openair-cologne-app.git
 2. cd into that directory.
 3. I am using mysql database for development. if you are using any other update your Gemfile for corresponding database adapter.
-4. Update database configurations in database.yml.
+4. Update application.yml configurations in application.yml.demo and remove the .demo.
 
 ```sh
 bundle install
