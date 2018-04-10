@@ -1,0 +1,14 @@
+<div class="ui container">
+  <div class="ui basic segments">
+    <div class="panel panel-default panel-boundary">
+      <h1 class="ui horizontal header divider">
+        OpenAir Ort
+      </h1>
+      <h1>Editieren</h1>
+
+      <%= render 'form', location: @location %>
+      <br><br>
+      <%= link_to 'Zurück', locations_path %>
+    </div>
+  </div>
+</div>

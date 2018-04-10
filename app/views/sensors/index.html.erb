@@ -1,0 +1,52 @@
+<div class="ui container">
+  <div class="ui basic segments">
+    <div class="panel panel-default panel-boundary">
+      <h1 class="ui horizontal header divider">
+        OpenAir Node
+      </h1>
+      <h4>Hallo <%= current_user.email %>,</h4>
+    <p>hier kannst du deinen Sensor konfigurieren deine Benutzerdaten editieren oder dir die Sensor Daten ansehen:</p>
+      <div class="ui basic segment">
+        <% @sensors.each do |s| %>
+          <div class="ui container">
+            <div class="ui relaxed divided items">
+              <div class="item">
+                <div class="ui small image">
+                  <img src="/DatenFuerDieStadt/img/board.jpg">
+                </div>
+                <div class="content">
+                  <a class="header">Sensor</a>
+                  <div class="meta">
+                    <div><%= s.node_id %></div>
+                  </div>
+                  <%# if ssnor konfig aber kein ort: %>
+                  <div class="description">
+                    <%= link_to 'Ort', locations_path(sensor_id: s.id), class: "ui label" %>
+                  </div>
+                  <div class="extra">
+                    <a href="<%= sensor_path(id: s.node_id)%>" class="ui left floated secondary button">
+                      Auswertungen & MQTT
+                    </a>
+                    <a href="<%= edit_sensor_path(id: s.node_id) %>" class="ui right floated primary button">
+                      Sensor Konfigurieren
+                      <i class="right chevron icon"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+        <% end %>
+      </div>
+      <% if @sensors.blank? %>
+      <div class="ui basic segment">
+        <%= form_for(Sensor.new, html: { method: :post, role: "form" }) do |f| %>
+          <%= f.submit  'Neuer Sensor anlegen', class: "ui primary basic button" %>
+        <%end%>
+      </div>
+      <% end %>
+      <div class="ui basic segment"><%= link_to 'Benutzerdaten editieren', edit_user_registration_path(current_user), class: "ui primary basic button" %></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="ui container">
+  <div class="ui basic segments">
+    <div class="panel panel-default panel-boundary">
+      <h1 class="ui horizontal header divider">
+        OpenAir Node
+      </h1>
+      <div class="ui basic segments">
+        <div class="ui two cards">
+          <div class="ui card">
+            <div class="content">
+              <div class="header">Temperatur</div>
+              <div class="meta">
+                <div class="group">Das Board wird warm und die Temperatur ist höher als die Umgebungstemperatur</div>
+              </div>
+              <div class="description">
+                <a href="<%= visualisation_url(id: 3, parvor_nr: 3) %>" target="_blank" class="ui left floated basic button">
+                  Temperaturkurve ansehen
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ui card">
+            <div class="content">
+              <div class="header">Feuchtigkeit</div>
+              <div class="meta">
+                <div class="group"></div>
+              </div>
+              <div class="description">
+                <a href="<%=  visualisation_url(id: 5, parvor_nr: 5) %>" target="_blank" class="ui left floated basic button">
+                  Luftfeuchtigkeitswerte ansehen
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ui card">
+            <div class="content">
+              <div class="header">Widerstand R1</div>
+              <div class="meta">
+                <div class="group">Zu beachten: Die Werte sind umgekehrt proportional zur NO2 Konzentration </div>
+              </div>
+              <div class="description">
+                <a href="<%= visualisation_url(id: 2, parvor_nr: 1) %>" target="_blank" class="ui left floated basic button">
+                  Widerstandswerte R1 ansehen
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ui card">
+            <div class="content">
+              <div class="header">Widerstand R2</div>
+              <div class="meta">
+                <div class="group">Zu beachten: Die Werte sind umgekehrt proportional zur NO2 Konzentration</div>
+              </div>
+              <div class="description">
+                <a href="<%=  visualisation_url(id: 3, parvor_nr: 2) %>" target="_blank" class="ui left floated basic button">
+                  Widerstandswerte R2 ansehen
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

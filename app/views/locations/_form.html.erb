@@ -1,0 +1,82 @@
+<%= form_for(location, html: { class: "ui form"}) do |f| %>
+  <% if location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+      <ul>
+      <% location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <div class="field">
+      <label>Straße & Hausnummer</label>
+      <%= f.text_field :street, :required => true %><br />
+    </div>
+    <div class="field">
+      <label>PLZ</label>
+      <%= f.text_field :zip, :required => true %><br />
+    </div>
+    <div class="seven wide column">
+      <label> Position auf der Karte
+      <div id="map" class="ui segment"><div id="map"></div></div>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <label>Longitude</label>
+        <%= f.text_field :longitude, :required => true %><br />
+      </div>
+      <div class="field">
+        <label>Latitude</label>
+        <%= f.text_field :latitude, :required => true %>
+      </div>
+    </div>
+    <div class="two wide field">
+      <label>Höhe zur Straße (in Meter)</label>
+      <%= f.text_field :altitude, :required => true %>
+    </div>
+    <div class="field">
+      <label>Position zur Straße?</label>
+      <%= f.check_box :face_street %><br />
+    </div>
+    <div class="field">
+      <label>Ruhige Lage?</label>
+      <%= f.check_box :quiet_condition %><br />
+    </div>
+    <div class="two wide field">
+      <label>Himmelsrichtung</label>
+      <%= f.select :direction, ["N","O","S","W"], :required => true %><br />
+    </div>
+      <%= f.hidden_field :sensor_id %><br />
+    <button class="ui button" type="submit">Speichern</button>
+
+<% end %>
+
+<script type="text/javascript">
+    var Tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '<a href="https://www.openstreetmap.org" target="_blank">Terms &amp; Feedback</a>'
+    });
+
+    var latitude = 50.941357, longitude = 6.958307, zoom_level = 14;
+
+    var map = L.map('map').addLayer(Tiles).setView([latitude, longitude], zoom_level);
+
+    newMarkerGroup = new L.LayerGroup();
+    var marker = new L.marker(["<%= location.latitude.nil? ? 50.941357 : location.latitude %>", "<%= location.longitude.nil? ? 6.958307 : location.longitude %>"]).addTo(map);
+    map.panTo(["<%= location.latitude.nil? ? 50.941357 : location.latitude %>", "<%= location.longitude.nil? ? 6.958307 : location.longitude %>"]);
+
+    map.on('click', function(e) {
+      var r = confirm("Die Position des Sensors ändern?");
+      var lat = (e.latlng.lat);
+      var lng = (e.latlng.lng);
+      if (r == true) {
+        $('#location_longitude').val(lng);
+        $('#location_latitude').val(lat);
+        var newLatLng = new L.LatLng(lat, lng);
+        marker.setLatLng(newLatLng);
+      }
+    });
+
+</script>

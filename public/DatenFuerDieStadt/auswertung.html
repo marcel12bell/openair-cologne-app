@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>OpenAir Sensors Cologne</title>
+    <meta name="description" content="OpenAirCologne">
+    <meta name="keywords" content="free html template, bootstrap, ui kit, sass" />
+    <meta name="author" content="Peter Finlan and Taty Grassini Codrops" />
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/favicon/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="img/favicon/manifest.json">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#663fb5">
+    <meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png">
+    <meta name="msapplication-config" content="img/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#663fb5">
+    <link rel="stylesheet" href="css/landio.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.min.css" media="screen" rel="stylesheet" type="text/css">
+    <script src="https://d3js.org/d3.v3.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.5.1/rickshaw.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="https://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <script src="js/heatmap.min.js"></script>
+    <script src="js/leaflet-heatmap.js"></script>
+    <style>
+        #map { width: 100%; height: 600px; }
+        body { font: 16px/1.4 "Helvetica Neue", Arial, sans-serif; }
+        .ghbtns { position: relative; top: 4px; margin-left: 5px; }
+        a { color: #0077ff; }
+        #comparison-legend.rickshaw_legend {
+          height: 140px;
+        }
+        #lanuv_chart { border-top: dotted }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Navigation
+    ================================================== -->
+
+    <nav id="totop" class="navbar navbar-dark bg-inverse">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <span class="icon-logo"></span>
+          <span class="sr-only">OpenAirCologne</span>
+        </a>
+        <a class="navbar-toggler hidden-md-up pull-xs-right" data-toggle="collapse" href="#collapsingNavbar" aria-expanded="false" aria-controls="collapsingNavbar">
+        &#9776;
+      </a>
+        <a class="navbar-toggler navbar-toggler-custom hidden-md-up pull-xs-right" data-toggle="collapse" href="#collapsingMobileUser" aria-expanded="false" aria-controls="collapsingMobileUser">
+          <span class="icon-user"></span>
+        </a>
+        <div id="collapsingNavbar" class="collapse navbar-toggleable-custom" role="tabpanel" aria-labelledby="collapsingNavbar">
+          <ul class="nav navbar-nav pull-xs-right">
+            <li class="nav-item nav-item-toggable ">
+              <a class="nav-link" href="index.html">Info</a>
+            </li>
+            <li class="nav-item nav-item-toggable active">
+              <a class="nav-link" href="http://openair.codingcologne.de/auswertung.html">Sensordaten</a>
+            </li>
+            <li class="nav-item nav-item-toggable">
+              <a class="nav-link" href="sensor_cloud.html">SensorCloud</a>
+            </li>
+            <li class="nav-item nav-item-toggable">
+              <a class="nav-link" href="/sensors">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <!-- Hero Section
+    ================================================== -->
+
+    <header class="section-small-menu bg-inverse text-xs-center center-vertically" role="banner">
+
+    </header>
+
+
+
+    <!-- Features
+    ================================================== -->
+    <section class="section-news">
+      <div class="container">
+        <h3 class="sr-only">News</h3>
+        <div class="bg-inverse">
+          <div class="row">
+            <div class="col-md-6 p-r-0">
+              <figure class="has-light-mask m-b-0 image-effect">
+                <img src="img/sensor.jpg" alt="Article thumbnail" class="img-fluid">
+              </figure>
+            </div>
+            <div class="col-md-6 p-l-0">
+              <article class="m-x-auto">
+                <span class="tag tag-info">Prototyp</span>
+                <br>
+                <h5><span>&larr;</span>Die Version 0 des Sensors sendet schon seit einem Jahr Daten.<span class="icon-arrow-left"></span></h5>
+              </article>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 push-md-6 p-l-0">
+              <figure class="has-light-mask m-b-0 image-effect">
+                <img src="img/board.jpg" alt="Article thumbnail" class="img-fluid">
+              </figure>
+            </div>
+            <div class="col-md-6 pull-md-6 p-r-0">
+              <article class="m-x-auto">
+                <span class="tag tag-info">OpenAir Node</span>
+                <br>
+                <h5><a href="http://www.everykey.de">Die OpenAir Node mit dem noch nicht verbauten Sensor<span>&rarr;</span></a></h5>
+                <p class="m-b-0">
+                  <a href="http://www.everykey.de"><span class="tag tag-default text-uppercase"><span class="icon-tag"></span> Designed von Everykey</span></a>
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="sensor" class="section-features text-xs-center">
+      <div class="container">
+        <h3>Aktuelle Sensoren in Köln</h3>
+        <div id="test_chart" style="white-space: nowrap;">
+            <div id="smoother" title="Smoothing"></div>
+            <div id="legend"></div>
+          <div class="chart_container">
+            <div class="y_axis"></div>
+            <div class="chart"></div>
+          </div>
+          <div id="slider"></div>
+        </div>
+        <div class="card-block">
+          <br>
+          <p>Einige der abgebildeten Sensoren befinden sich noch in abgeschirmten Räumlichkeiten, <br>
+            manche sind aber schon an der frischen Luft, z.B. in Ehrenfeld, Nippes und Deutz ... <br>
+            Die Sensoren messen den wechselnden Widerstand eines stückes Metall, das erhitzt wird. Die Moleküle in der Luft werden dazu eingeladen Elektronen abzugeben (Ionisierung). Aus dem Messergebniss können dann durch Umrechnungen Rückschlüsse auf die Konzentration gezogen werden (s.u. der Vergleich mit den offiziellen Messtellen).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sensor" class="section-pricing bg-faded text-xs-center">
+      <div class="container">
+        <h3>Vergleich mit offiziellen Messungen</h3>
+        <h5>(ohne Gewähr)</h5>
+        <div id="conv_chart" style="white-space: nowrap;">
+            <div id="smoother" title="Smoothing"></div>
+            <div id="comparison-legend"></div>
+          <div class="chart_container">
+            <div class="y_axis"></div>
+            <div class="chart"></div>
+          </div>
+          <div id="slider"></div>
+        </div>
+        <div id="lanuv_chart" style="white-space: nowrap;">
+            <div id="smoother" title="Smoothing"></div>
+          <div class="chart_container">
+            <div class="y_axis"></div>
+            <div class="chart"></div>
+          </div>
+          <div id="slider"></div>
+        </div>
+      </div>
+       <div class="card-block">
+          <br>
+          <p>Die beiden oberen Messwerte zeigen den Verlauf zweier Sensoren, die wir über einen Zeitraum von 30 Tagen aufgestellt haben.<br>
+            <br>
+            Darunter sind die vier offiziellen Messwerte. Die Umrechnung unserer Messungen ist derzeit noch in der Entwicklung. <br>Bisher wird eine einfache Umrechnung der Messwerte ohne Beachtung der Temperatur, Luftfeuchtigkeit und Inversionswetterlage angewendet. <br>
+            Über die Qualität lässt sich daher noch nichts sagen ... <br> Aber was man schon sieht: Beide Liniendiagramme haben einen ähnlichen Verlauf.<br>
+          </p>
+        </div>
+    </section>
+
+    <section class="section-features text-xs-center">
+      <div class="container">
+        <h3>Heatmap</h3>
+        <p>(hier werden die Daten der letzten Woche auf einer Karte visualisiert)</p>
+        <div id="map"></div>
+        <div class="card-block">
+          <button class="btn btn-outline-secondary" id="start">Starte die Animation</button>
+          <div id="time"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section-testimonials text-xs-center bg-inverse">
+      <div class="container">
+        <h3 class="sr-only"></h3>
+        <p class="intro"><h2>Alles über Stickstoffdioxid ( NO2 )</h2></p><br><br>
+        <p class="intro">Wer mehr über die Thematik wissen will, kann <u><a href="https://bit.ly/no2_paper" target="_blank">im Greenpeace Abschlussbericht "Das dreckige Dutzend"</a></u> Informationen finden. </p><br><br>
+        <p class="intro">Aßerdem hat die Europäische Kommission gegen Deutschland ein Vertragsverletzungsverfahren eingeleitet: <br><u><a href="http://opal.landtag.nrw.de/portal/WWW/dokumentenarchiv/Dokument/MMV16-4854.pdf" target="_blank">Aus dem Schreiben wird klar, dass Köln ein Problem mit hohen Stickstoffdioxidwerten hat.</a></u></p><br><br>
+      </div>
+    </section>
+
+
+
+    <!-- Footer
+    ================================================== -->
+
+    <footer class="section-footer bg-inverse" role="contentinfo">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-5">
+            <div class="media">
+              <div class="media-left">
+                <span class="media-object icon-logo display-1"></span>
+              </div>
+              <small class="media-body media-bottom">
+                <p>Copyright © 2016 <a href="#">OKLab Cologne</a><br>
+                Designed by Peter Finlan, developed by Taty Grassini, exclusively for Codrops.
+              </small>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-7">
+            <ul class="nav nav-inline">
+              <li class="nav-item"><a class="nav-link" href="https://twitter.com/codeforcologne" target="_blank">Über Twitter teilen ...</a></li>
+              <li class="nav-item"><a class="nav-link scroll-top" href="#totop">Nach oben <span class="icon-caret-up"></span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
+    <script src="js/landio.min.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.markercluster/example/realworld.10000.js"></script>
+
+    <script type="text/javascript">
+     $(function() {
+
+      // die gesammelten Daten sind umgekehrt proportional zu den offiziellen Werten...
+      var flip = -1;
+      var scale = 100000;
+
+      var influxdb = 'https://openair-api.datacolonia.de/';
+
+      var testQuery = "SELECT mean(value) FROM open_air..r_no WHERE time > now() - 7d AND value > 0 GROUP BY id,time(1h) fill(null)";
+      $.getJSON( influxdb, {
+                  q: testQuery
+              },
+              function( influxData ) {
+                  var chartdata = transformData(influxData);
+
+                  drawGraph(
+                          $('#test_chart'),
+                          chartdata,
+                          'line'
+                  );
+                  console.log(geoData(influxData));
+
+                  drawHeatmap(geoData(influxData));
+              }
+      );
+      var position = {
+        "F686BA": {name: " Braunsfeld, Hültzstraße", lat: 50.9354091, lng: 6.9036765 },
+        "F686D0": {name: " Nippes, Usambarastraße", lat: 50.9688866, lng: 6.9528073 },
+        "F686E2": {name: " Leverkusen, Gustav-Heinemann-Straße", lat: 51.0340417, lng: 7.014524 },
+        "F686A1": {name: " Mülheim, Berliner Straße", lat: 55.9922929, lng: 7.0290864 },
+        "F68719": {name: " Mülheim, Bachstraße", lat: 50.961950, lng: 7.000509 },
+        "F68735": {name: " Piccoloministraße Holweide", lat: 50.9718842, lng: 7.0415296 },
+        "F68654": {name: " Horrem", lat: 50.9129582, lng: 6.6973444 },
+        "F686D6": {name: " Dellbrück, Krokusweg", lat: 50.9854211, lng: 7.0645445 },
+        "F685E9": {name: " Ehrenfeld, Philippstraße", lat: 50.9500462, lng: 6.9184047 },
+        "F686D9": {name: " Widdersdorf, Blaugasse", lat: 50.9625913, lng: 6.8275693 },
+        "CA2898": {name: " Sülz, Mommsenstraße", lat: 50.9209702, lng: 6.9060713 },
+        "CA2766": {name: " Vingst, Burgstraße", lat: 50.936516, lng: 7.021469 },
+        "CA28DB": {name: " Eigelstein, Lübeckerstraße", lat: 50.9435015, lng: 6.9191012 }
+      }
+
+      function get_label(board) {
+        var name = JSON.stringify(board)
+        if (position[board]) {
+          name += position[board]["name"]
+        }
+        return name
+      }
+      values_count = 0;
+      function geoData(influxData) {
+        var data = {};
+        influxData.results[0].series.map(function(s) {
+          var board = s.tags.id;
+          s.values.map(function(v) {
+            if (position[board]) {
+               var val = (v[1] == null) ? 0 : v[1];
+               if (board in data) {
+                 data[board].push( {
+                  count: (v[1]*flip),
+                  heat: (val*flip)+scale,
+                  lat: position[board]["lat"],
+                  lng: position[board]["lng"],
+                  date: v[0]
+                 });
+               } else {
+                 values_count = s.values.length;
+                 data[board] = [];
+                 data[board].push( {
+                  count: (v[1]*flip),
+                  heat: (val*flip)+scale,
+                  lat: position[board]["lat"],
+                  lng: position[board]["lng"],
+                  date: v[0]
+                 });
+               }
+             }
+          })
+        });
+        return data;
+      }
+
+      function transformData(influxData) {
+          var palette = new Rickshaw.Color.Palette();
+          return influxData.results[0].series.map(function(s) {
+              var board = s.tags.id;
+              var y;
+              return {
+                  name: get_label(board),
+                  data: s.values.map(function(v) {
+                      return { x: new Date(v[0]).getTime() / 1000,
+                               y: (v[1]*flip),
+                              };
+                  }),
+                  color: palette.color()
+              };
+          });
+      }
+
+      function drawGraph($element, series, renderer) {
+          //$element.find('.y_axis').css('background-color: red;')
+
+          var graph = new Rickshaw.Graph({
+              element: $element.find('.chart').get(0),
+              width: window.innerWidth - window.innerWidth/3,
+              height: 600,
+              renderer: renderer,
+              series: series,
+              padding: {top: 0.2, left: 0.01, right: 0.01, bottom: 0.01},
+              min: 'auto'
+          });
+
+          var xAxis = new Rickshaw.Graph.Axis.Time({
+              graph: graph
+          });
+          var yAxis = new Rickshaw.Graph.Axis.Y({
+              graph: graph,
+              orientation: 'left',
+              element: $element.find('.y_axis').get(0)
+          });
+
+
+
+          var legend = new Rickshaw.Graph.Legend( {
+            graph: graph,
+            element: document.getElementById('legend')
+
+          } );
+
+          var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
+            graph: graph,
+            legend: legend
+          } );
+
+          var order = new Rickshaw.Graph.Behavior.Series.Order( {
+            graph: graph,
+            legend: legend
+          } );
+
+          var highlight = new Rickshaw.Graph.Behavior.Series.Highlight( {
+            graph: graph,
+            legend: legend
+          } );
+
+          var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+            graph: graph
+          } );
+
+
+          //xAxis.render();
+          //yAxis.render();
+          graph.render();
+      }
+
+
+      function drawHeatmap(data) {
+
+        var baseLayer = L.tileLayer(
+          'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+            maxZoom: 14
+          }
+        );
+
+        var cfg = {
+          // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+          "radius": 0.01,
+          "minOpacity": 0.2,
+          "maxOpacity": 1,
+          "gradient": {0.4: 'blue', 0.65: 'lime', 1: 'yellow'},
+          // scales the radius based on map zoom
+          "scaleRadius": true,
+          // if set to false the heatmap uses the global maximum for colorization
+          // if activated: uses the data maximum within the current map boundaries
+          //   (there will always be a red spot with useLocalExtremas true)
+          "useLocalExtrema": false,
+          // which field name in your data represents the latitude - default "lat"
+          "latField": 'lat',
+          // which field name in your data represents the longitude - default "lng"
+          "lngField": 'lng',
+          // which field name in your data represents the data value - default "value"
+          "valueField": 'heat'
+        };
+
+
+        var heatmapLayer = new HeatmapOverlay(cfg);
+
+        var map = new L.Map('map', {
+          center: new L.LatLng(50.941357,  6.958307),
+          zoom: 11,
+          scrollWheelZoom: false,
+          touchZoom: false,
+          dragging: false,
+          layers: [baseLayer, heatmapLayer]
+        });
+
+        map.once('focus', function() { map.scrollWheelZoom.enable(); });
+
+        $('#start').on('click', function () {
+          var counter = 0
+          setInterval(function () {
+            current_points = {
+              max: 90000,
+              min: 4000,
+              data: []
+            }
+             if (counter <= values_count) {
+                $.each( data, function( board, values ) {
+                    if (values[counter]["count"] < 0) {
+                      current_points["data"].push(values[counter]);
+                    }
+                    $("#time").html(values[counter]["date"]);
+                });
+                counter += 1;
+              }
+              heatmapLayer.setData(current_points);
+            },800);
+        })
+
+        // make accessible for debugging
+        layer = heatmapLayer;
+      }
+    });
+    </script>
+    <script src="js/comparison.js" type="text/javascript"></script>
+
+  </body>
+</html>

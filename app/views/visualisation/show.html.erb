@@ -1,0 +1,106 @@
+<div class="ui container">
+  <div class="ui basic segments">
+    <div class="panel panel-default panel-boundary">
+      <h1 class="ui horizontal header divider">
+        OpenAir Nodes
+      </h1>
+      <section id="sensor">
+        <div class="container">
+          <h3>Dies ist die Liste aller Sensoren:</h3>
+          <h5></h5>
+          <% @sensors.map(&:node_id).each do |i| %>
+           <div id="chart-<%= i %>"></div>
+          <% end %>
+      </section>
+    </div>
+  </div>
+</div>
+<style>
+        #comparison-legend.rickshaw_legend {
+          height: 140px;
+        }
+    </style>
+<script type="text/javascript">
+
+
+$(function() {
+
+  var th_api = "https://babeauf.nt.fh-koeln.de/Messwerte/";
+
+  var sensors = <%= raw @sensors.map(&:node_id) %>;
+
+  var parvor_mapping = {
+    '1': "Widerstand R1",
+    '2': "Widerstand R2",
+    '3': "Temperatur",
+    '5': "Luftfeuchtigkeit",
+  }
+
+  $.each(sensors, function(index,node_id) {
+    setTimeout(function(){
+      $.getJSON( th_api, {
+          //senid:"088565bd-b46a-4843-816b-ee1ea9253794",
+          senid: node_id,
+          parvor_nr: "<%= params[:parvor_nr] || 3 %>",
+          period: '20d',
+          dx: 80000
+        },
+        function( th_data ) {
+            console.log(th_data)
+
+          if (th_data["v"].length > 2) {
+            var th_times= $.each(th_data["t"], function(i,v) {
+              th_data["t"][i] = timeConverter(th_data["bt"] + v);
+            })
+            var th_values= $.each(th_data["v"], function(i,v) {
+              //th_data["v"][i] = (600-v)/20;
+              //th_data["v"][i] = -0.00010214 * v+ 95.734;
+            })
+
+            function timeConverter(UNIX_timestamp){
+              var a = new Date(UNIX_timestamp);
+              var months = ['Jan','Feb','Mär','Apr','May','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+              var year = a.getFullYear();
+              var month = months[a.getMonth()];
+              var date = a.getDate();
+              var hour = a.getHours();
+              var min = a.getMinutes();
+              var sec = a.getSeconds();
+              var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+              return time;
+            }
+
+            let data = {
+              labels: th_data["t"].reverse(),
+
+              datasets: [
+                {
+                  title: parvor_mapping["<%=params[:parvor_nr] %>"],
+                  values: th_data["v"].reverse()
+                }
+              ]
+            };
+            var chart = new Chart({
+              parent: "#chart-"+ node_id, // or a DOM element
+              title: parvor_mapping["<%=params[:parvor_nr] %>"]+ " Werte von " + node_id.slice(0,8),
+              data: data,
+              type: 'line', // or 'line', 'scatter', 'pie', 'percentage'
+              height: 250,
+              is_series: 1,
+              colors: ['#7cd6fd', 'violet', 'blue'],
+              // hex-codes or these preset colors;
+              // defaults (in order):
+              // ['light-blue', 'blue', 'violet', 'red',
+              // 'orange', 'yellow', 'green', 'light-green',
+              // 'purple', 'magenta', 'grey', 'dark-grey']
+
+              format_tooltip_x: d => (d + '').toUpperCase(),
+              format_tooltip_y: d => d + ''
+            });
+          }
+        }
+      );
+    }, 1000);
+  })
+});
+</script>

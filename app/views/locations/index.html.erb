@@ -1,0 +1,32 @@
+<div class="ui container">
+  <div class="ui basic segments">
+    <div class="panel panel-default panel-boundary">
+      <h1 class="ui horizontal header divider">
+        OpenAir Node
+      </h1>
+
+      <h1>Orte - an denen der Sensor aufgestellt wurde</h1>
+      <h5>(Der oberste sollte immer der aktuelle Ort sein)</h5>
+      <% unless @locations.blank? %>
+      <table class="ui celled striped table">
+        <thead>
+          <tr>
+            <th colspan="3">Liste:</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @locations.order(created_at: :desc).each do |location| %>
+            <tr>
+              <td><%= link_to "#{location.street}, #{location.zip} editieren", edit_location_path(location) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
+      <br>
+
+      <%= link_to 'Neuer Ort', new_location_path(sensor_id: params[:sensor_id]) %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,127 @@
+
+<div class="ui container">
+  <a href="/sensors" class="ui left floated primary button">
+    Zurück zur Sensorliste
+    <i class="left chevron icon"></i>
+  </a>
+</div>
+<br>
+<br>
+<br>
+<div class="ui container">
+  <div class="ui row">
+    <div class="panel panel-default panel-boundary">
+      <h1 class="ui horizontal header divider">
+        Auswertung
+      </h1>
+    </div>
+  </div>
+  <div class="ui basic segments">
+    <div class="ui two cards">
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Temperatur</div>
+          <div class="meta">
+            <div class="group">Das Board wird warm und die Temperatur ist höher als die Umgebungstemperatur (Bezeichnung: temp)</div>
+          </div>
+          <div class="description">
+            <a href="https://babeauf.nt.fh-koeln.de/scstat/diagram.php?senid=<%= @sensor.node_id %>&parvor_nr=3" target="_blank" class="ui left floated basic button">
+              Temperaturkurve
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Feuchtigkeit</div>
+          <div class="meta">
+            <div class="group">(Bezeichnung: hum)</div>
+          </div>
+          <div class="description">
+            <a href="https://babeauf.nt.fh-koeln.de/scstat/diagram.php?senid=<%= @sensor.node_id %>&parvor_nr=5" target="_blank" class="ui left floated basic button">
+              Luftfeuchtigkeit
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Widerstand R1</div>
+          <div class="meta">
+            <div class="group">Zu beachten: Die Werte sind umgekehrt proportional</div>
+          </div>
+          <div class="description">
+            <a href="https://babeauf.nt.fh-koeln.de/scstat/diagram.php?senid=<%= @sensor.node_id %>&parvor_nr=1" target="_blank" class="ui left floated basic button">
+              Widerstandswert R1 ansehen
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Widerstand R2</div>
+          <div class="meta">
+            <div class="group">Zu beachten: Die Werte sind umgekehrt proportional</div>
+          </div>
+          <div class="description">
+            <a href="https://babeauf.nt.fh-koeln.de/scstat/diagram.php?senid=<%= @sensor.node_id %>&parvor_nr=2" target="_blank" class="ui left floated basic button">
+              Widerstandswert R2 ansehen
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Feinstaub</div>
+          <div class="meta">
+            <div class="group">(falls angeschlossen)</div>
+          </div>
+          <div class="description">
+            <a href="<%= visualisation_index_url %>&parvor_nr=6" target="_blank" class="ui left floated basic button">
+              PM2.5 ansehen
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Feinstaub</div>
+          <div class="meta">
+            <div class="group">(falls angeschlossen)</div>
+          </div>
+          <div class="description">
+            <a href="<%= visualisation_index_url %>&parvor_nr=6" target="_blank" class="ui left floated basic button">
+              PM10 ansehen
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui vertical stripe segment">
+    <div class="ui text container">
+      <h4 class="ui horizontal header divider">
+        MQTT
+      </h4>
+      <h3 class="ui header">Topic:  mw/openair/<%= @sensor.mqtt_id %></h3>
+      <p>Server: babeauf.nt.fh-koeln.de Port: 2883 </p>
+      <p>Username: <%= @sensor.mqtt_id %></p>
+      <p>Password: <%= @sensor.mqtt_pass %></p>
+    </div>
+    <br><br>
+  </div>
+  <div class="ui vertical stripe segment">
+    <div class="ui text container">
+      <h4 class="ui horizontal header divider">
+        Hardware & Firmware
+      </h4>
+        <a href="https://github.com/OpenAirCgn/hardware" target="_blank" class="ui left floated basic button">
+         Hier ist die Hardware zu finden
+        </a>
+         <a href="https://github.com/OpenAirCgn/firmware" target="_blank" class="ui left floated basic button">
+         Hier ist die Firmware zu finden
+        </a>
+    </div>
+    <br><br>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+
+  <div class="ui container">
+    <a href="/sensors" class="ui left floated primary button">
+      Zurück zur Sensorliste
+      <i class="left chevron icon"></i>
+    </a>
+  </div>
+
+<br>
+<br>
+<br>
+<div class="ui container">
+  <div class="ui row">
+    <div class="panel panel-default panel-boundary">
+      <h1 class="ui horizontal header divider">
+        Anleitung
+      </h1>
+    </div>
+  </div>
+  <div class="ui basic segments">
+    <div class="ui two cards">
+      <div class="ui card">
+        <div class="image dimmable">
+          <img src="/DatenFuerDieStadt/img/board.jpg">
+        </div>
+        <div class="content">
+          <div class="header">Schritt 1</div>
+          <div class="meta">
+            <div class="group">Sensor mit einem Micro USB Kabel verbinden.</div>
+          </div>
+          <div class="description">Sobald er Strom hat, werden wird gemeinsam den Sensor einrichten. <br> Der Sensor baut ein eigenes WLAN Netz auf. Das kann 1-2 Minuten dauern.</div>
+        </div>
+      </div>
+      <div class="ui card">
+        <div class="image dimmable">
+          <img src="/DatenFuerDieStadt/img/wlan.jpg">
+        </div>
+        <div class="content">
+          <div class="header">Schritt 2</div>
+          <div class="meta">
+            <div class="group">WLAN Netzwerk wechseln</div>
+          </div>
+          <div class="description">
+            Wir wechseln das Netz und sobald wir mit "OpenAirNode" verbunden sind, machen wir weiter mit
+            Schritt 3...<br> Dieser Link übergibt auch Parameter an den Sensor.
+            Falls die Seite nicht lädt, schaue noch einmal nach, daß du mit dem Netz "OpenAirNode" verbunden bist.<br>
+            Falls "OpenAirNode" nicht als WLAN Netz angezeigt wird, den Sensor von der Stromquelle trennen und neu verbinden.
+          </div>
+          <br>
+          <div class="extra">
+            <a href="http://192.168.4.1/?mqtt_pass=<%=@sensor.mqtt_pass%>&mqtt_id=<%=@sensor.mqtt_id%>" class="ui right floated primary button" target="_blank">
+              Mit dem Sensor verbinden... (zu Schritt 3)
+              <i class="right chevron icon"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui vertical stripe segment">
+    <div class="ui text container">
+      <h4 class="ui horizontal header divider">
+        Letzter Schritt
+      </h4>
+      <h3 class="ui header">Kommen die Daten an?</h3>
+      <p>Die Daten werden jede Minute vom Sensor versendet... wenn etwas ankommt,<a href="https://babeauf.nt.fh-koeln.de/SensorCloud/Messwert/Last/SenID/<%=@sensor.node_id%>" target="_blank"> dann ist es hier zu sehen.</a></p>
+      <p>Hier kann man schon sehen, ob Daten angekommen sind:</p>
+      <a class="ui big button" href="https://babeauf.nt.fh-koeln.de/SensorCloud/Messwert/Last/SenID/<%=@sensor.node_id%>" target="_blank">aktueller Wert</a>
+      <a class="ui big button" href="https://babeauf.nt.fh-koeln.de/Messwerte/?senid=<%=@sensor.node_id%>&parvor_nr=1" target="_blank">Messerte</a>
+      <h4>Wichtig: Die Charts in der Sensorliste werden erst nach einer Stunde erstellt... Wenn die Links oben etwas anzeigen, hat also alles geklappt.</h4>
+    </div>
+    <br><br><br><br>
+  </div>
+</div>
